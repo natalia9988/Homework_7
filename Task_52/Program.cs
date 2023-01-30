@@ -1,10 +1,10 @@
-﻿/*Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
-и возвращает значение этого элемента или же указание, что такого элемента нет.
+﻿/*Задача 52. Задайте двумерный массив из целых чисел. 
+Найдите среднее арифметическое элементов в каждом столбце.
 Например, задан массив:
 1 4 7 2
 5 9 2 3
 8 4 2 4
-17 -> такого числа в массиве нет*/
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.*/
 
 int getIntFromUser(string message)  
 {
@@ -29,12 +29,12 @@ int [,] get2DArray (int colLength, int rowLength, int start, int end)
     {
         for (int j = 0; j < rowLength; j++)
         {
-            array[i,j] = new Random().Next(start, end+1);
+            array[i,j] = new Random().Next(start, end+1) ;
         }
     }
     return array;
-}
 
+}
 
 void print2DArray( int [,] array)
 {
@@ -56,9 +56,17 @@ void print2DArray( int [,] array)
 }
 int rows = getIntFromUser("Введите количество строк");
 int colums = getIntFromUser("Введите количество столбцов");
-int [,] array = get2DArray(rows,colums,0,100);
+int [,] array = get2DArray(rows,colums,0,10);
 print2DArray(array);
 
-if (rows < array.GetLength(0) && colums < array.GetLength(1)) Console.WriteLine(array[rows, colums]);
-else Console.WriteLine($"{rows}{colums} -> такого числа в массиве нет");
+Console.WriteLine("---------------------------");
 
+for (int j = 0; j < array.GetLength(1); j++)
+{
+    double sum = 0;
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        sum += array[i, j];
+    }
+    Console.Write($"{ sum / array.GetLength(0)} ") ;
+}
